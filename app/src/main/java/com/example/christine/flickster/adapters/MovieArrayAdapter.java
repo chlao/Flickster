@@ -7,6 +7,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,13 +44,13 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Movie movie = getItem(position);
+        final Movie movie = getItem(position);
 
         /**
          *  Speedholder pattern: speeds up the population of the ListView
          *  considerably by caching view lookups for smoother, faster item loading
          */
-        ViewHolder viewHolder; // view lookup cache stored in tag
+        final ViewHolder viewHolder; // view lookup cache stored in tag
         // Check the existing view being reused
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -70,13 +71,17 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie>{
 
         Configuration config = getContext().getResources().getConfiguration();
 
-        if (config.orientation == 2){
+        if (config.orientation == ORIENTATION_LANDSCAPE){
             // Clear out image from last time (in case view is reused)
             viewHolder.backdrop.setImageResource(0);
-            Picasso.with(getContext()).load(movie.getBackdrop()).into(viewHolder.backdrop);
+            Picasso.with(getContext()).load(movie.getBackdrop())
+                    .placeholder(R.drawable.movie_placeholder_land)
+                    .into(viewHolder.backdrop);
         } else{
             viewHolder.ivImage.setImageResource(0);
-            Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.ivImage);
+            Picasso.with(getContext()).load(movie.getPosterPath())
+                    .placeholder(R.drawable.movie_placeholder)
+                    .into(viewHolder.ivImage);
         }
 
         viewHolder.tvTitle.setText(movie.getOriginalTitle());
