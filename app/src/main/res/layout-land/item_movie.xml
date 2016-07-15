@@ -21,7 +21,8 @@
         android:id="@+id/tvTitle"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivMovieImageLand"
-        android:layout_toEndOf="@+id/ivMovieImageLand" />
+        android:layout_toEndOf="@+id/ivMovieImageLand"
+        android:textColor="@color/colorTitle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,5 +31,6 @@
         android:id="@+id/tvOverview"
         android:layout_below="@+id/tvTitle"
         android:layout_toRightOf="@+id/ivMovieImageLand"
-        android:layout_toEndOf="@+id/ivMovieImageLand" />
+        android:layout_toEndOf="@+id/ivMovieImageLand"
+        android:textColor="@color/colorOverview"/>
 </RelativeLayout>
