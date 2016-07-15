@@ -3,14 +3,20 @@ package com.example.christine.flickster;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.christine.flickster.models.Movie;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
 public class MovieActivity extends AppCompatActivity {
+    ArrayList<Movie> movies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +31,14 @@ public class MovieActivity extends AppCompatActivity {
         client.get(url, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
+                JSONArray movieResults = null;
+
+                try {
+                    movieResults = response.getJSONArray("results");
+                    movies = Movie.fromJSONArray(movieResults);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
