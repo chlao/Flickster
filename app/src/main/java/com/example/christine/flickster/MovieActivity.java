@@ -47,7 +47,8 @@ public class MovieActivity extends AppCompatActivity {
                 try {
                     movieResults = response.getJSONArray("results");
 
-                    /** movies = Movie.fromJSONArray(movieResults);
+                    /**
+                     *  movies = Movie.fromJSONArray(movieResults);
                      *  Changing reference of movie to be new block of data, don't track old movies
                      *  Adapter is still tracking the old movies
                      */

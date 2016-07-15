@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ivMovieImage"
+        android:id="@+id/ivMovieImageLand"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -20,8 +20,8 @@
         tools:text="Finding Dory"
         android:id="@+id/tvTitle"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivMovieImage"
-        android:layout_toEndOf="@+id/ivMovieImage" />
+        android:layout_toRightOf="@+id/ivMovieImageLand"
+        android:layout_toEndOf="@+id/ivMovieImageLand" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,6 +29,6 @@
         tools:text="Finding Dory: reunites Dory with friends Nemo and Marlin on a search for answers about her past. What can she remember? Who are her parents? And where did she learn to speak Whale?"
         android:id="@+id/tvOverview"
         android:layout_below="@+id/tvTitle"
-        android:layout_toRightOf="@+id/ivMovieImage"
-        android:layout_toEndOf="@+id/ivMovieImage" />
+        android:layout_toRightOf="@+id/ivMovieImageLand"
+        android:layout_toEndOf="@+id/ivMovieImageLand" />
 </RelativeLayout>

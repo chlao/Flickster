@@ -13,9 +13,14 @@ public class Movie {
     String posterPath;
     String originalTitle;
     String overview;
+    String backdrop;
+
+    public String getBackdrop() {
+        return String.format("https://image.tmdb.org/t/p/w1280/%s", backdrop);
+    }
 
     public String getPosterPath() {
-        return String.format("https://image.tmdb.org/t/p/w342/%s", posterPath);
+        return String.format("https://image.tmdb.org/t/p/w500/%s", posterPath);
     }
 
     public String getOriginalTitle() {
@@ -31,6 +36,7 @@ public class Movie {
         this.posterPath = object.getString("poster_path");
         this.originalTitle = object.getString("original_title");
         this.overview = object.getString("overview");
+        this.backdrop = object.getString("backdrop_path");
     }
 
     /** static: only one instance of a static field exists (shared by all instances of class)

@@ -1,6 +1,6 @@
-# Project 1 - *Name of App Here*
+# Project 1 - Flickster
 
-**Name of your app** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
+Flickster shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
 Time spent: **X** hours spent in total
 
@@ -10,9 +10,9 @@ The following **required** functionality is completed:
 
 * [X] User can **scroll through current movies** from the Movie Database API
 * [X] For each movie displayed, user can see the following details:
-  * [X ] Title, Poster Image, Overview (Portrait mode)
+  * [X] Title, Poster Image, Overview (Portrait mode)
   * [X] Title, Backdrop Image, Overview (Landscape mode)
-* [ ] Layout is optimized with the [ViewHolder](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView#improving-performance-with-the-viewholder-pattern) pattern.
+* [X] Layout is optimized with the [ViewHolder](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView#improving-performance-with-the-viewholder-pattern) pattern.
 
 The following **optional** features are implemented:
 
