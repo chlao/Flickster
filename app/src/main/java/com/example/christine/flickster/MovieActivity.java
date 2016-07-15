@@ -1,5 +1,6 @@
 package com.example.christine.flickster;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ListViewCompat;
@@ -24,6 +25,8 @@ public class MovieActivity extends AppCompatActivity {
 
     ListView lvItems;
 
+    private SwipeRefreshLayout swipeContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,22 @@ public class MovieActivity extends AppCompatActivity {
         movieAdapter = new MovieArrayAdapter(this, movies);
         lvItems.setAdapter(movieAdapter);
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchMovies();
+            }
+        });
+
+        fetchMovies();
+    }
+
+    public void fetchMovies(){
         String url = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -52,9 +71,12 @@ public class MovieActivity extends AppCompatActivity {
                      *  Changing reference of movie to be new block of data, don't track old movies
                      *  Adapter is still tracking the old movies
                      */
-
                     movies.addAll(Movie.fromJSONArray(movieResults));
                     movieAdapter.notifyDataSetChanged();
+
+                    // Now we call setRefreshing(false) to signal refresh has finished
+                    swipeContainer.setRefreshing(false);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
