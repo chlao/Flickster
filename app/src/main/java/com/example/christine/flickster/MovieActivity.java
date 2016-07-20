@@ -1,9 +1,13 @@
 package com.example.christine.flickster;
 
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ListViewCompat;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.christine.flickster.adapters.MovieArrayAdapter;
@@ -36,6 +40,17 @@ public class MovieActivity extends AppCompatActivity {
         movies = new ArrayList<>();
         movieAdapter = new MovieArrayAdapter(this, movies);
         lvItems.setAdapter(movieAdapter);
+
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Movie movie = (Movie) parent.getItemAtPosition(position);
+
+                showMovieDetailsDialog(movie);
+            }
+        });
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
@@ -87,5 +102,16 @@ public class MovieActivity extends AppCompatActivity {
                 super.onFailure(statusCode, headers, responseString, throwable);
             }
         });
+    }
+
+    private void showMovieDetailsDialog(Movie movie){
+        String title = movie.getOriginalTitle();
+        String posterImage = movie.getPosterPath();
+        String synopsis = movie.getOverview();
+        Float rating = movie.getRating();
+
+        FragmentManager fm = getSupportFragmentManager();
+        MovieDetailsDialogFragment movieDetailsDialogFragment = MovieDetailsDialogFragment.newInstance(title, posterImage, synopsis, rating);
+        movieDetailsDialogFragment.show(fm, "fragment_movie_details");
     }
 }

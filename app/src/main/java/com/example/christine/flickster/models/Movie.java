@@ -14,7 +14,7 @@ public class Movie {
     String originalTitle;
     String overview;
     String backdrop;
-    double rating;
+    float rating;
 
     MovieType movieType;
 
@@ -22,7 +22,7 @@ public class Movie {
         return movieType;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
@@ -52,7 +52,7 @@ public class Movie {
         this.originalTitle = object.getString("original_title");
         this.overview = object.getString("overview");
         this.backdrop = object.getString("backdrop_path");
-        this.rating = Double.parseDouble(object.getString("vote_average"));
+        this.rating = Float.parseFloat(object.getString("vote_average"));
 
         if (this.rating >= 5){
             this.movieType = movieType.values()[0];
