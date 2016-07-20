@@ -3,8 +3,9 @@
     <color name="colorPrimary">#FFEB3B</color>
     <color name="colorPrimaryDark">#FBC02D</color>
     <color name="colorAccent">#FFF176</color>
-    <color name="colorBackground">#000000</color>
+    <color name="colorBackground">#424242</color>
     <color name="colorTitle">#FFFFFF</color>
     <color name="colorOverview">#BDBDBD</color>
     <color name="colorActionBarTitle">#424242</color>
+    <color name="colorDivider">#757575</color>
 </resources>

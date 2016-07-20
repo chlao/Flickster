@@ -18,5 +18,7 @@
         android:id="@+id/lvViews"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:divider="@color/colorDivider"
+        android:dividerHeight="1dp" />
 </android.support.v4.widget.SwipeRefreshLayout>
