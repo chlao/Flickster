@@ -14,6 +14,17 @@ public class Movie {
     String originalTitle;
     String overview;
     String backdrop;
+    double rating;
+
+    MovieType movieType;
+
+    public MovieType getMovieType() {
+        return movieType;
+    }
+
+    public double getRating() {
+        return rating;
+    }
 
     public String getBackdrop() {
         return String.format("https://image.tmdb.org/t/p/w1280/%s", backdrop);
@@ -31,12 +42,23 @@ public class Movie {
         return overview;
     }
 
+    public enum MovieType{
+        POPULAR, STANDARD
+    }
+
     // throws JSONException: will bubble up to caller trying to instantiate
     public Movie (JSONObject object) throws JSONException{
         this.posterPath = object.getString("poster_path");
         this.originalTitle = object.getString("original_title");
         this.overview = object.getString("overview");
         this.backdrop = object.getString("backdrop_path");
+        this.rating = Double.parseDouble(object.getString("vote_average"));
+
+        if (this.rating >= 5){
+            this.movieType = movieType.values()[0];
+        } else {
+            this.movieType = movieType.values()[1];
+        }
     }
 
     /** static: only one instance of a static field exists (shared by all instances of class)
